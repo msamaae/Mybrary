@@ -9,8 +9,9 @@ const expressLayouts = require('express-ejs-layouts');
 const app = express();
 const mongoose = require('mongoose');
 
-// Require indexRouter
-const indexRouter = require('./routes/index')
+// Require indexRouter & authorRouter
+const indexRouter = require('./routes/index');
+const authorRouter = require('./routes/author');
 
 // Set view engine and layouts
 app.set('view engine', 'ejs');
@@ -21,6 +22,7 @@ app.use(express.static('public'));
 
 // Use indexRouter 
 app.use('/', indexRouter);
+app.use('/authors', authorRouter);
 
 // Setup connection to db or mongodb://localhost/mybrary
 mongoose.connect(process.env.DATABASE_URL, {
